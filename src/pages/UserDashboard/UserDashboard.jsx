@@ -1,7 +1,25 @@
+import React, { useState, useEffect } from "react";
 import "./UserDashboard.css";
-import { Link, Outlet } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 const UserDashboard = () => {
+  // Initialize avatar state from localStorage if available
+  const savedAvatar = localStorage.getItem("avatar");
+  const [avatar, setAvatar] = useState(savedAvatar || "/avatar.jpg");
+
+  // Handle file upload
+  const handleFileChange = (e) => {
+    const file = e.target.files[0];
+    if (file) {
+      const reader = new FileReader();
+      reader.onloadend = () => {
+        setAvatar(reader.result); // Update avatar with the uploaded image
+        localStorage.setItem("avatar", reader.result); // Save new avatar to localStorage
+      };
+      reader.readAsDataURL(file);
+    }
+  };
+
   return (
     <div>
       <div className="min-h-screen flex bg-gray-100">
@@ -59,26 +77,34 @@ const UserDashboard = () => {
               >
                 Logo
               </Link>
-              <div className="space-x-4">
+              <div className="space-x-4 flex">
                 <Link
                   to="#"
                   className="text-gray-600 hover:text-[#2934b1] transition"
                 >
                   Settings
                 </Link>
-                <Link
-                  to="#"
-                  className="text-gray-600 hover:text-[#2934b1] transition"
-                >
-                  Profile
-                </Link>
+                <div className="relative">
+                  {/* Displaying avatar */}
+                  <img
+                    src={avatar}
+                    alt="Profile Avatar"
+                    className="w-8 h-8 rounded-full"
+                  />
+                  <input
+                    type="file"
+                    accept="image/*"
+                    onChange={handleFileChange}
+                    className="absolute top-0 left-0 opacity-0 w-full h-full cursor-pointer"
+                  />
+                </div>
               </div>
             </div>
           </nav>
 
           {/* Content Area */}
           <main className="flex-1 p-6">
-            <Outlet />
+            {/* The content inside this area */}
           </main>
         </div>
       </div>

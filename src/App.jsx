@@ -34,6 +34,7 @@ import PostOfficeDashboard from "./pages/PostOffices/PostOfficeDashboard";
 import PostOfficeOverview from "./pages/PostOffices/PostOfficeOverview";
 import PostPayFine from "./pages/PostOffices/PostPayFine";
 import PostReportIssue from "./pages/PostOffices/PostReportIssue";
+import Profile from "./pages/UserDashboard/Profile";
 
 const App = () => {
   return (
@@ -89,6 +90,7 @@ const App = () => {
           <Route path="user-overview" element={<UserOverview />} />
           <Route path="fine-pay" element={<FinePay />} />
           <Route path="report-issue" element={<ReportIssue />} />
+          <Route path="profile" element={<Profile />} />
         </Route>
       </Routes>
     </div>
