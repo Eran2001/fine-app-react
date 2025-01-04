@@ -20,9 +20,9 @@ const Fine = () => {
 
       {/* Content Section */}
       <div className="max-w-4xl mx-auto py-12 px-6 sm:px-8 lg:px-10">
-        <h2 className="text-2xl md:text-3xl font-bold text-center mb-6">
+        <h3 className="text-2xl md:text-3xl font-bold text-center mb-6">
           VIEW &amp; PAY FINES
-        </h2>
+        </h3>
         <div className="h-1 w-20 bg-blue-500 mx-auto mb-8"></div>
         <p className="text-gray-700 text-base sm:text-lg leading-7 mb-6">
           The payCity website and app give you an easy and convenient way to view and make payment for your traffic fines online.

@@ -66,24 +66,24 @@ html {
   position: absolute;
   top: 47%;
   left: 10%;
-  font-size: 50px;
+  font-size: 40px;
   font-weight: bold;
   color: white;
 }
 .hero-text-new {
   position: absolute;
-  top: 53%;
+  top: 51.5%;
   left: 10%;
-  font-size: 50px;
+  font-size: 40px;
   font-weight: bold;
   color: white;
 }
 
 .hero-text3 {
   position: absolute;
-  top: 60%;
+  top: 57%;
   left: 10%;
-  font-size: 30px;
+  font-size: 20px;
   font-weight: bold;
   color: white;
 }
