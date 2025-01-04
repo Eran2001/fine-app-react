@@ -10,7 +10,7 @@ import OurServices from "../../components/OurServices/OurServices";
 
 const Home = () => {
   const [textIndex, setTextIndex] = useState(0);
-  const texts = ["Here", "There", "Everywhere"];
+  const texts = ["Clear Fine", "Save Time"];
   const [slideIn, setSlideIn] = useState(false);
 
   useEffect(() => {
@@ -22,7 +22,7 @@ const Home = () => {
 
   useEffect(() => {
     const elements = document.querySelectorAll(
-      ".hero-text, .hero-text2, .hero-text3"
+      ".hero-text, .hero-text2, .hero-text3, .hero-text-new"
     );
 
     const handleScroll = () => {
@@ -56,11 +56,12 @@ const Home = () => {
           <img src="/hero.jpg" className="hero-img" alt="Hero" />
         </div>
         <h1 className={`hero-text ${slideIn ? 'slide-in' : ''}`}>
-          Welcome <span>{texts[textIndex]}</span>
+          Fine.lk <span>{texts[textIndex]}</span>
         </h1>
-        <h2 className={`hero-text2 ${slideIn ? 'slide-in' : ''}`}>To Sri Lanka</h2>
+        <h2 className={`hero-text2 ${slideIn ? 'slide-in' : ''}`}>Fine.lk simplifies the process of managing traffic fines for citizens, </h2>
+        <h2 className={`hero-text-new ${slideIn ? 'slide-in' : ''}`}>officers, and post offices</h2>
         <p className={`hero-text3 ${slideIn ? 'slide-in' : ''}`}>
-          This is your fine payment app in Sri Lanka.
+        Pay, report, and resolve issues conveniently while staying informed with real-time updates..
         </p>
       </div>
       <OurServices />

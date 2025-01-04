@@ -70,17 +70,25 @@ html {
   font-weight: bold;
   color: white;
 }
+.hero-text-new {
+  position: absolute;
+  top: 53%;
+  left: 10%;
+  font-size: 50px;
+  font-weight: bold;
+  color: white;
+}
 
 .hero-text3 {
   position: absolute;
-  top: 53%;
+  top: 60%;
   left: 10%;
   font-size: 30px;
   font-weight: bold;
   color: white;
 }
 
-.hero-text, .hero-text2, .hero-text {
+.hero-text, .hero-text2, .hero-text, .hero-text-new {
   transition: opacity 0.5s ease, transform 0.5s ease;
 }
 
