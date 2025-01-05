@@ -1,6 +1,7 @@
-import React, { useState, useEffect } from "react";
+import { useState } from "react";
 import "./UserDashboard.css";
 import { Link } from "react-router-dom";
+import { Outlet } from 'react-router-dom';
 
 const UserDashboard = () => {
   // Initialize avatar state from localStorage if available
@@ -105,6 +106,7 @@ const UserDashboard = () => {
           {/* Content Area */}
           <main className="flex-1 p-6">
             {/* The content inside this area */}
+            <Outlet />
           </main>
         </div>
       </div>

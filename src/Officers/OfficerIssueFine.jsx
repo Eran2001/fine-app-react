@@ -7,6 +7,7 @@ const OfficerIssueFine = () => {
     fine_type: "",
     fine_amount: "",
     license_id: "",
+    user_email: "",
   });
 
   const [submittedFine, setSubmittedFine] = useState(null);
@@ -18,7 +19,15 @@ const OfficerIssueFine = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    if (!fine.fine_id || !fine.fine_name || !fine.fine_type || !fine.fine_amount || !fine.license_id) {
+    // Validate all fields
+    if (
+      !fine.fine_id ||
+      !fine.fine_name ||
+      !fine.fine_type ||
+      !fine.fine_amount ||
+      !fine.license_id ||
+      !fine.user_email
+    ) {
       alert("All fields are required!");
       return;
     }
@@ -37,7 +46,7 @@ const OfficerIssueFine = () => {
       }
 
       const data = await response.json();
-      alert("Fine added successfully");
+      alert("Fine added successfully, and an email has been sent to the user.");
 
       // Update the state with the fine data
       setSubmittedFine(data);
@@ -49,7 +58,7 @@ const OfficerIssueFine = () => {
 
   return (
     <div className="max-w-3xl mx-auto p-4">
-      <h1 className="text-2xl font-bold mb-4">Officer, Issue a fine</h1>
+      <h1 className="text-2xl font-bold mb-4">Officer, Issue a Fine</h1>
 
       <form onSubmit={handleSubmit} className="space-y-4">
         <input
@@ -87,12 +96,19 @@ const OfficerIssueFine = () => {
           onChange={handleChange}
           className="w-full p-2 border rounded-md"
         />
+        <input
+          type="email"
+          name="user_email"
+          placeholder="User Email"
+          onChange={handleChange}
+          className="w-full p-2 border rounded-md"
+        />
         <button type="submit" className="w-full bg-blue-500 text-white p-2 rounded-md">
           Add Fine
         </button>
       </form>
 
-      {submittedFine && (
+      {/* {submittedFine && (
         <div className="overflow-x-auto mt-6">
           <table className="min-w-full bg-white border border-gray-200">
             <thead>
@@ -112,6 +128,9 @@ const OfficerIssueFine = () => {
                 <th className="px-6 py-3 border-b border-gray-200 bg-gray-100 text-left text-xs font-medium text-gray-600 tracking-wider">
                   License ID
                 </th>
+                <th className="px-6 py-3 border-b border-gray-200 bg-gray-100 text-left text-xs font-medium text-gray-600 tracking-wider">
+                  User Email
+                </th>
               </tr>
             </thead>
             <tbody>
@@ -121,11 +140,12 @@ const OfficerIssueFine = () => {
                 <td className="px-6 py-3 border-b">{submittedFine.fine_type}</td>
                 <td className="px-6 py-3 border-b">Rs.{submittedFine.fine_amount}</td>
                 <td className="px-6 py-3 border-b">{submittedFine.license_id}</td>
+                <td className="px-6 py-3 border-b">{submittedFine.user_email}</td>
               </tr>
             </tbody>
           </table>
         </div>
-      )}
+      )} */}
     </div>
   );
 };
