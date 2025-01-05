@@ -68,7 +68,7 @@ const PayFine = () => {
               <tr key={fine.fine_id}>
                 <td className="px-6 py-3 border-b">{fine.fine_id}</td>
                 <td className="px-6 py-3 border-b">{fine.fine_name}</td>
-                <td className="px-6 py-3 border-b">${fine.fine_amount}</td>
+                <td className="px-6 py-3 border-b">Rs.{fine.fine_amount}</td>
                 <td className="px-6 py-3 border-b">
                   <button
                     onClick={() => handlePaid(fine.fine_id)}

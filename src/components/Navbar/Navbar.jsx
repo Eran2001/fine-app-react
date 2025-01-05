@@ -42,7 +42,9 @@ const Navbar = () => {
       <div className="flex space-x-10">
         <div
           className={`cursor-pointer pl-40 ${
-            isActive("/") ? "text-white-500 font-bold underline" : "text-[white]"
+            isActive("/")
+              ? "text-white-500 font-bold underline"
+              : "text-[white]"
           } ${getLinkClasses("/")}`}
           onClick={() => navigate("/")}
         >
@@ -57,24 +59,6 @@ const Navbar = () => {
           onClick={() => navigate("/services")}
         >
           Services
-        </div>
-        <div
-          className={`cursor-pointer ${
-            isActive("/about") ? "font-bold underline" : "text-white"
-          } ${getLinkClasses("/about")}`}
-          onClick={() => navigate("/about")}
-        >
-          About
-        </div>
-        <div
-          className={`cursor-pointer ${
-            isActive("/contact")
-              ? "text-white-500 font-bold underline"
-              : "text-white"
-          } ${getLinkClasses("/contact")}`}
-          onClick={() => navigate("/contact")}
-        >
-          Contact
         </div>
         <div
           className={`cursor-pointer ${
@@ -95,6 +79,24 @@ const Navbar = () => {
           onClick={() => navigate("/post-offices")}
         >
           Post Offices
+        </div>
+        <div
+          className={`cursor-pointer ${
+            isActive("/about") ? "font-bold underline" : "text-white"
+          } ${getLinkClasses("/about")}`}
+          onClick={() => navigate("/about")}
+        >
+          About
+        </div>
+        <div
+          className={`cursor-pointer ${
+            isActive("/contact")
+              ? "text-white-500 font-bold underline"
+              : "text-white"
+          } ${getLinkClasses("/contact")}`}
+          onClick={() => navigate("/contact")}
+        >
+          Contact
         </div>
       </div>
       <div className="flex space-x-4">

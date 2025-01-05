@@ -18,31 +18,65 @@ const PostPayFine = () => {
     fetchFines();
   }, []);
 
+    // Handle the "Paid" button click
+    const handlePaid = async (fineId) => {
+      try {
+        const response = await fetch(`http://localhost:5000/api/officerfines/${fineId}`, {
+          method: "DELETE",
+        });
+  
+        if (!response.ok) {
+          throw new Error("Failed to delete fine");
+        }
+  
+        // Remove the fine from the list in the UI
+        setFines((prevFines) => prevFines.filter((fine) => fine.fine_id !== fineId));
+        alert("Fine marked as paid and removed successfully!");
+      } catch (error) {
+        console.error("Error deleting fine:", error);
+        alert("Failed to mark the fine as paid.");
+      }
+    };
+
   return (
-    <div className="post-pay-fine">
-      <h1>Pay Post Fine</h1>
-      <table>
+    <div className="max-w-3xl mx-auto p-4">
+      <h1 className="text-2xl font-bold mb-4">Pay Post Fine</h1>
+
+      {fines.length > 0 ? (
+      <table className="min-w-full bg-white border border-gray-200">
         <thead>
           <tr>
-            <th>ID</th>
-            <th>name</th>
-            <th>type</th>
-            <th>Amount</th>
-            <th>License ID</th>
+            <th className="px-6 py-3 border-b border-gray-200 bg-gray-100 text-left text-xs font-medium text-gray-600 tracking-wider">ID</th>
+            <th className="px-6 py-3 border-b border-gray-200 bg-gray-100 text-left text-xs font-medium text-gray-600 tracking-wider">name</th>
+            <th className="px-6 py-3 border-b border-gray-200 bg-gray-100 text-left text-xs font-medium text-gray-600 tracking-wider">type</th>
+            <th className="px-6 py-3 border-b border-gray-200 bg-gray-100 text-left text-xs font-medium text-gray-600 tracking-wider">Amount</th>
+            <th className="px-6 py-3 border-b border-gray-200 bg-gray-100 text-left text-xs font-medium text-gray-600 tracking-wider">License ID</th>
+            <th className="px-6 py-3 border-b border-gray-200 bg-gray-100 text-left text-xs font-medium text-gray-600 tracking-wider">Action</th>
           </tr>
         </thead>
         <tbody>
           {fines.map((fine, index) => (
             <tr key={index}>
-              <td>{fine.fine_id}</td>
-              <td>{fine.fine_name}</td>
-              <td>{fine.fine_type}</td>
-              <td>Rs.{fine.fine_amount}</td>
-              <td>{fine.license_id}</td>
+              <td className="px-6 py-3 border-b">{fine.fine_id}</td>
+              <td className="px-6 py-3 border-b">{fine.fine_name}</td>
+              <td className="px-6 py-3 border-b">{fine.fine_type}</td>
+              <td className="px-6 py-3 border-b">Rs.{fine.fine_amount}</td>
+              <td className="px-6 py-3 border-b">{fine.license_id}</td>
+              <td className="px-6 py-3 border-b">
+                  <button
+                    onClick={() => handlePaid(fine.fine_id)}
+                    className="bg-blue-500 text-white p-3 rounded-md"
+                  >
+                    Pay
+                  </button>
+                </td>
             </tr>
           ))}
         </tbody>
       </table>
+      ) : (
+        <p className="text-gray-600">No fines available to pay.</p>
+      )}
     </div>
   );
 };

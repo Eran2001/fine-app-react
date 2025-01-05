@@ -56,6 +56,9 @@ const PayFine = () => {
                 Fine Name
               </th>
               <th className="px-6 py-3 border-b border-gray-200 bg-gray-100 text-left text-xs font-medium text-gray-600 tracking-wider">
+                Fine Type
+              </th>
+              <th className="px-6 py-3 border-b border-gray-200 bg-gray-100 text-left text-xs font-medium text-gray-600 tracking-wider">
                 Fine Amount
               </th>
               <th className="px-6 py-3 border-b border-gray-200 bg-gray-100 text-left text-xs font-medium text-gray-600 tracking-wider">
@@ -68,7 +71,8 @@ const PayFine = () => {
               <tr key={fine.fine_id}>
                 <td className="px-6 py-3 border-b">{fine.fine_id}</td>
                 <td className="px-6 py-3 border-b">{fine.fine_name}</td>
-                <td className="px-6 py-3 border-b">${fine.fine_amount}</td>
+                <td className="px-6 py-3 border-b">{fine.fine_type}</td>
+                <td className="px-6 py-3 border-b">Rs.{fine.fine_amount}</td>
                 <td className="px-6 py-3 border-b">
                   <button
                     onClick={() => handlePaid(fine.fine_id)}

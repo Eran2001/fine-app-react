@@ -2,7 +2,7 @@ import { useState } from "react";
 
 const OfficerIssueFine = () => {
   const [fine, setFine] = useState({
-    fine_id: "",
+    // fine_id: "",
     fine_name: "",
     fine_type: "",
     fine_amount: "",
@@ -21,7 +21,6 @@ const OfficerIssueFine = () => {
 
     // Validate all fields
     if (
-      !fine.fine_id ||
       !fine.fine_name ||
       !fine.fine_type ||
       !fine.fine_amount ||
@@ -61,13 +60,13 @@ const OfficerIssueFine = () => {
       <h1 className="text-2xl font-bold mb-4">Officer, Issue a Fine</h1>
 
       <form onSubmit={handleSubmit} className="space-y-4">
-        <input
+        {/* <input
           type="text"
           name="fine_id"
           placeholder="Fine ID"
           onChange={handleChange}
           className="w-full p-2 border rounded-md"
-        />
+        /> */}
         <input
           type="text"
           name="fine_name"

@@ -21,7 +21,6 @@ const OfficersLogin = () => {
       localStorage.setItem("officerToken", data.token);
       navigate("/officer-dashboard");
     } catch (err) {
-      // setError("Invalid email or batch number");
       alert("Invalid email or batch number");
       console.error(err);
     }
