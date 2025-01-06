@@ -3,10 +3,10 @@ import { useEffect, useState } from "react";
 const Officer = () => {
   const [officers, setOfficers] = useState([]);
   const [form, setForm] = useState({
-    officer_id: "",
     batch_number: "",
     name: "",
     email: "",
+    password: "",
     contact: "",
   });
   const [editId, setEditId] = useState(null);
@@ -42,10 +42,10 @@ const Officer = () => {
       const data = await response.json();
       fetchOfficers();
       setForm({
-        officer_id: "",
         batch_number: "",
         name: "",
-        position: "",
+        email: "",
+        password: "",
         contact: "",
       });
       setEditId(null);
@@ -69,10 +69,10 @@ const Officer = () => {
   // Set form for edit
   const handleEdit = (officer) => {
     setForm({
-      officer_id: officer.officer_id,
       batch_number: officer.batch_number,
       name: officer.name,
-      position: officer.email,
+      email: officer.email,
+      password: officer.password,
       contact: officer.contact,
     });
     setEditId(officer.officer_id);
@@ -83,14 +83,14 @@ const Officer = () => {
       <h3 className="text-2xl font-bold mb-4">Officer List</h3>
 
       <form onSubmit={handleSubmit} className="mb-4">
-        <input
+        {/* <input
           type="text"
           placeholder="Officer_ID"
           value={form.officer_id}
           onChange={(e) => setForm({ ...form, officer_id: e.target.value })}
           required
           className="border px-2 py-1 mr-2"
-        />
+        /> */}
         <input
           type="text"
           placeholder="Batch_number"
@@ -112,6 +112,14 @@ const Officer = () => {
           placeholder="Email"
           value={form.email}
           onChange={(e) => setForm({ ...form, email: e.target.value })}
+          required
+          className="border px-2 py-1 mr-2"
+        />
+        <input
+          type="text"
+          placeholder="Password"
+          value={form.password}
+          onChange={(e) => setForm({ ...form, password: e.target.value })}
           required
           className="border px-2 py-1 mr-2"
         />
@@ -146,6 +154,9 @@ const Officer = () => {
               </th>
               <th className="px-4 py-3 border-b border-gray-200 bg-gray-100 text-left text-xs font-medium text-gray-600 tracking-wider">
                 Contact
+              </th>
+              <th className="px-4 py-3 border-b border-gray-200 bg-gray-100 text-left text-xs font-medium text-gray-600 tracking-wider">
+                Edit
               </th>
             </tr>
           </thead>

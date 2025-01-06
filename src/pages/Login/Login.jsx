@@ -51,7 +51,7 @@ const Login = () => {
         <input
           type="email"
           name="email"
-          placeholder="Email"
+          placeholder="Enter Your Email"
           onChange={handleChange}
           required
           className=" block w-full h-11 px-5 py-2.5 bg-white leading-7 text-base font-normal shadow-xs text-gray-900 border border-gray-300 rounded-full placeholder-gray-400 focus:outline-none"
@@ -63,7 +63,7 @@ const Login = () => {
           <input
             type="password"
             name="password"
-            placeholder="Password"
+            placeholder="Enter Your Password"
             onChange={handleChange}
             required
             className="block w-full h-11 px-5 py-2.5 bg-white leading-7 text-base font-normal shadow-xs text-gray-900 border border-gray-300 rounded-full placeholder-gray-400 focus:outline-none"

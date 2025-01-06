@@ -3,8 +3,8 @@ import { useNavigate } from "react-router-dom";
 import Navbar from "../../components/Navbar/Navbar";
 
 const PostOfficeLogin = () => {
-  const [post_office_name, setPostOfficeName] = useState("");
-  const [postal_code, setPostalCode] = useState("");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
   const navigate = useNavigate();
 
   const handleSubmit = async (e) => {
@@ -15,7 +15,7 @@ const PostOfficeLogin = () => {
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify({ post_office_name, postal_code }),
+        body: JSON.stringify({ email, password }),
       });
       const data = await response.json();
       if (response.ok) {
@@ -40,26 +40,28 @@ const PostOfficeLogin = () => {
       <form onSubmit={handleSubmit} className="w-full max-w-lg mx-auto p-8 bg-white rounded-lg shadow-lg">
         <div className="relative mb-6">
           <label className="flex items-center mb-2 text-gray-600 text-sm font-medium" htmlFor="post_office_name">
-            Post Office Name
+            Email
           </label>
           <input
             type="text"
-            id="post_office_name"
-            value={post_office_name}
-            onChange={(e) => setPostOfficeName(e.target.value)}
+            id="email"
+            value={email}
+            placeholder="Enter Your Email"
+            onChange={(e) => setEmail(e.target.value)}
             className="block w-full h-11 px-5 py-2.5 bg-white leading-7 text-base font-normal shadow-xs text-gray-900 border border-gray-300 rounded-full placeholder-gray-400 focus:outline-none"
             required
           />
         </div>
         <div className="relative mb-6">
           <label className="flex items-center mb-2 text-gray-600 text-sm font-medium" htmlFor="postal_code">
-            Postal Code
+            Password
           </label>
           <input
             type="text"
             id="postal_code"
-            value={postal_code}
-            onChange={(e) => setPostalCode(e.target.value)}
+            value={password}
+            placeholder="Enter Your Password"
+            onChange={(e) => setPassword(e.target.value)}
             className="block w-full h-11 px-5 py-2.5 bg-white leading-7 text-base font-normal shadow-xs text-gray-900 border border-gray-300 rounded-full placeholder-gray-400 focus:outline-none"
             required
           />

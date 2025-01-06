@@ -3,7 +3,7 @@ import { useEffect, useState } from "react";
 const PostOffice = () => {
 
   const [postOffices, setPostOffices] = useState([]);
-  const [form, setForm] = useState({ postal_code: "", post_office_name: "", district: "" });
+  const [form, setForm] = useState({ postal_code: "", post_office_name: "", email: "", password: "", district: "" });
   const [editId, setEditId] = useState(null);
 
   // Fetch post offices
@@ -34,7 +34,7 @@ const PostOffice = () => {
       });
       const data = await response.json();
       fetchPostOffices();
-      setForm({ postal_code: "", post_office_name: "", district: "" });
+      setForm({ postal_code: "", post_office_name: "", email: "", password: "", district: "" });
       setEditId(null);
     } catch (error) {
       console.error("Error saving post office:", error);
@@ -46,7 +46,7 @@ const PostOffice = () => {
       const response = await fetch(`http://localhost:5000/postoffices/${id}`, {
         method: "PATCH",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(updatedField), // e.g., { district: "New District" }
+        body: JSON.stringify(updatedField), 
       });
       if (!response.ok) {
         throw new Error("Failed to update field");
@@ -78,6 +78,8 @@ const PostOffice = () => {
     setForm({
       postal_code: postOffice.postal_code,
       post_office_name: postOffice.post_office_name,
+      email: postOffice.email,
+      password: postOffice.password,
       district: postOffice.district,
     });
     setEditId(postOffice.post_id);
@@ -106,6 +108,22 @@ const PostOffice = () => {
         />
         <input
           type="text"
+          placeholder="Email"
+          value={form.email}
+          onChange={(e) => setForm({ ...form, email: e.target.value })}
+          required
+          className="border px-2 py-1 mr-2"
+        />
+        <input
+          type="text"
+          placeholder="Password"
+          value={form.password}
+          onChange={(e) => setForm({ ...form, password: e.target.value })}
+          required
+          className="border px-2 py-1 mr-2"
+        />
+        <input
+          type="text"
           placeholder="District"
           value={form.district}
           onChange={(e) => setForm({ ...form, district: e.target.value })}
@@ -124,14 +142,20 @@ const PostOffice = () => {
               <th className="px-2 py-3 border-b border-gray-200 bg-gray-100 text-left text-xs font-medium text-gray-600 uppercase tracking-wider">
                 Post_ID
               </th>
-              <th className="px-20 py-3 border-b border-gray-200 bg-gray-100 text-left text-xs font-medium text-gray-600 uppercase tracking-wider">
+              <th className="px-5 py-3 border-b border-gray-200 bg-gray-100 text-left text-xs font-medium text-gray-600 uppercase tracking-wider">
                 postal code
               </th>
-              <th className="px-4 py-3 border-b border-gray-200 bg-gray-100 text-left text-xs font-medium text-gray-600 uppercase tracking-wider">
+              <th className="px-10 py-3 border-b border-gray-200 bg-gray-100 text-left text-xs font-medium text-gray-600 uppercase tracking-wider">
                 post office name
+              </th>
+              <th className="px-10 py-3 border-b border-gray-200 bg-gray-100 text-left text-xs font-medium text-gray-600 uppercase tracking-wider">
+                email
               </th>
               <th className="px-4 py-3 border-b border-gray-200 bg-gray-100 text-left text-xs font-medium text-gray-600 uppercase tracking-wider">
                 district
+              </th>
+              <th className="px-4 py-3 border-b border-gray-200 bg-gray-100 text-left text-xs font-medium text-gray-600 uppercase tracking-wider">
+                Edit
               </th>
             </tr>
           </thead>
@@ -141,6 +165,7 @@ const PostOffice = () => {
                 <td className="px-6 py-3 border-b">{postOffice.post_id}</td>
                 <td className="px-6 py-3 border-b">{postOffice.postal_code}</td>
                 <td className="px-6 py-3 border-b">{postOffice.post_office_name}</td>
+                <td className="px-6 py-3 border-b">{postOffice.email}</td>
                 <td className="px-6 py-3 border-b">{postOffice.district}</td>
                 <td className="px-6 py-3 border-b">
                   <button onClick={() => handleEdit(postOffice)} className="px-2 py-1 text-white bg-yellow-500 mr-2">

@@ -4,7 +4,7 @@ import Navbar from "../components/Navbar/Navbar";
 
 const OfficersLogin = () => {
   const [email, setEmail] = useState("");
-  const [batch_number, setBatchNumber] = useState("");
+  const [password, setPassword] = useState("");
   const [error, setError] = useState("");
   const navigate = useNavigate();
 
@@ -14,14 +14,14 @@ const OfficersLogin = () => {
       const response = await fetch("http://localhost:5000/api/officers/login", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ email, batch_number }),
+        body: JSON.stringify({ email, password }),
       });
       if (!response.ok) throw new Error("Invalid credentials");
       const data = await response.json();
       localStorage.setItem("officerToken", data.token);
       navigate("/officer-dashboard");
     } catch (err) {
-      alert("Invalid email or batch number");
+      alert("Invalid email or password");
       console.error(err);
     }
   };
@@ -44,6 +44,7 @@ const OfficersLogin = () => {
           <input
             type="email"
             value={email}
+            placeholder="Enter Your Email"
             onChange={(e) => setEmail(e.target.value)}
             required
             className="block w-full h-11 px-5 py-2.5 bg-white leading-7 text-base font-normal shadow-xs text-gray-900 border border-gray-300 rounded-full placeholder-gray-400 focus:outline-none"
@@ -51,12 +52,13 @@ const OfficersLogin = () => {
         </div>
         <div className="relative mb-6">
           <label className="flex items-center mt-5 mb-2 text-gray-600 text-sm font-medium">
-            Batch Number
+            Password
           </label>
           <input
             type="password"
-            value={batch_number}
-            onChange={(e) => setBatchNumber(e.target.value)}
+            value={password}
+            placeholder="Enter Your Password"
+            onChange={(e) => setPassword(e.target.value)}
             required
             className="block w-full h-11 px-5 py-2.5 bg-white leading-7 text-base font-normal shadow-xs text-gray-900 border border-gray-300 rounded-full placeholder-gray-400 focus:outline-none"
           />
