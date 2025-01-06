@@ -1,8 +1,10 @@
 import { useState, useEffect } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
+import "./Navbar.css";
 
 const Navbar = () => {
   const [isScrolled, setIsScrolled] = useState(false);
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
   const navigate = useNavigate();
   const location = useLocation();
 
@@ -27,89 +29,90 @@ const Navbar = () => {
 
   return (
     <nav
-      className={`p-1 fixed w-full left-0 right-0 top-0 flex justify-around items-center transition-colors duration-300 z-[60]`}
-      style={{
-        backgroundColor: isScrolled ? "#070250" : "#070250",
-        height: "4rem",
-      }}
+      className={`navbar p-1 fixed w-full left-0 right-0 top-0 flex justify-between items-center transition-colors duration-300 z-[60] ${
+        isScrolled ? "scrolled" : ""
+      }`}
     >
+      {/* Logo */}
       <div
-        className="text-[#fff] font-bold cursor-pointer"
+        className="logo text-[#fff] font-bold cursor-pointer"
         onClick={() => navigate("/")}
       >
-        <img src="/logo.png" width="40px" alt="" />
+        <img src="/logo.png" width="40px" alt="Logo" className="logoNav" />
       </div>
-      <div className="flex space-x-10">
+
+      <button
+        className="toggle-bar text-white text-3xl focus:outline-none"
+        onClick={() => setIsMenuOpen(!isMenuOpen)}
+      >
+        {isMenuOpen ? "✕" : "☰"}
+      </button>
+
+      <div className={`nav-links ${isMenuOpen ? "open" : ""}`}>
         <div
-          className={`cursor-pointer pl-40 ${
-            isActive("/")
-              ? "text-white-500 font-bold underline"
-              : "text-[white]"
-          } ${getLinkClasses("/")}`}
+          className={getLinkClasses("/")}
           onClick={() => navigate("/")}
         >
           Home
         </div>
         <div
-          className={`cursor-pointer ${
-            isActive("/services")
-              ? "text-white-500 font-bold underline"
-              : "text-white"
-          } ${getLinkClasses("/services")}`}
+          className={getLinkClasses("/services")}
           onClick={() => navigate("/services")}
         >
           Services
         </div>
         <div
-          className={`cursor-pointer ${
-            isActive("/officers")
-              ? "text-white-500 font-bold underline"
-              : "text-white"
-          } ${getLinkClasses("/officers")}`}
+          className={getLinkClasses("/officers")}
           onClick={() => navigate("/officers")}
         >
           Officers
         </div>
         <div
-          className={`cursor-pointer ${
-            isActive("/post-offices")
-              ? "text-white-500 font-bold underline"
-              : "text-white"
-          } ${getLinkClasses("/post-offices")}`}
+          className={getLinkClasses("/post-offices")}
           onClick={() => navigate("/post-offices")}
         >
           Post Offices
         </div>
         <div
-          className={`cursor-pointer ${
-            isActive("/about") ? "font-bold underline" : "text-white"
-          } ${getLinkClasses("/about")}`}
+          className={getLinkClasses("/about")}
           onClick={() => navigate("/about")}
         >
           About
         </div>
         <div
-          className={`cursor-pointer ${
-            isActive("/contact")
-              ? "text-white-500 font-bold underline"
-              : "text-white"
-          } ${getLinkClasses("/contact")}`}
+          className={getLinkClasses("/contact")}
           onClick={() => navigate("/contact")}
         >
           Contact
         </div>
+
+        {/* Login and Register Buttons Inside Toggle Bar */}
+        <div className="toggle-buttons">
+          <button
+            className="login-button"
+            onClick={() => navigate("/login")}
+          >
+            Login
+          </button>
+          <button
+            className="register-button"
+            onClick={() => navigate("/register")}
+          >
+            Register
+          </button>
+        </div>
       </div>
-      <div className="flex space-x-4">
+
+      {/* Login and Register Buttons Visible Above 1433px */}
+      <div className="buttons-above">
         <button
-          className={`bg-[#070250] text-white login-reg border-2 border-white px-10 py-1 rounded transition-all duration-300 w-32 hover:text-[#00e3dc] hover:border-[#00e3dc] ${
-            isScrolled ? "border-2 border-orange-500" : ""
-          }`}
+          className="login-button"
           onClick={() => navigate("/login")}
         >
           Login
         </button>
         <button
-          className="reg bg-[#00e3dc] text-[#070250] login-reg px-10 py-1 rounded w-32 hover:text-white hover:bg-[#070250] hover:border-[#00e3dc] border-2 border-[white]] transition-all duration-300"
+          className="register-button"
           onClick={() => navigate("/register")}
         >
           Register
