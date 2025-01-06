@@ -35,6 +35,7 @@ import PostOfficeOverview from "./pages/PostOffices/PostOfficeOverview";
 import PostPayFine from "./pages/PostOffices/PostPayFine";
 import PostReportIssue from "./pages/PostOffices/PostReportIssue";
 import Profile from "./pages/UserDashboard/Profile";
+import Setting from "./Admin/Setting";
 
 const App = () => {
   return (
@@ -56,6 +57,7 @@ const App = () => {
         <Route path="/officersLogin" element={<OfficersLogin />} />
         <Route path="/post-office-login" element={<PostOfficeLogin />} />
         <Route path="/post-office-dashboard" element={<PostOfficeDashboard />}>
+          <Route index element={<PostOfficeOverview />} />
           <Route path="overview" element={<PostOfficeOverview />} />
           <Route path="pay-fine" element={<PostPayFine />} />
           <Route path="issues" element={<PostReportIssue />} />
@@ -72,6 +74,7 @@ const App = () => {
           <Route path="officer" element={<Officer />} />
           <Route path="post-office" element={<PostOffice />} />
           <Route path="reported-issues" element={<ReportedIssues />} />
+          <Route path="setting" element={<Setting />} />
         </Route>
         <Route
           path="/officer-dashboard"
@@ -79,6 +82,7 @@ const App = () => {
         >
           <Route index element={<OfficerOverview />} />
           <Route path="officer-overview" element={<OfficerOverview />} />
+          <Route path="fines" element={<Fines />} />
           <Route path="issue-fine" element={<OfficerIssueFine />} />
           <Route path="manage-issues" element={<OfficerIssues />} />
         </Route>

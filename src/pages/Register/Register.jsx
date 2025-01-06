@@ -35,6 +35,7 @@ const Register = () => {
 
       if (response.ok) {
         navigate("/login");
+        alert("Successfully Login")
       } else {
         alert("Submission failed. Please try again.");
       }

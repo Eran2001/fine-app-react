@@ -25,6 +25,12 @@ const OfficerDashboard = () => {
                 Overview
               </Link>
               <Link
+                to="fines"
+                className="block px-6 py-3 text-gray-600 hover:bg-gray-100 hover:text-[#2934b1] transition"
+              >
+                Fines
+              </Link>
+              <Link
                 to="issue-fine"
                 className="block px-6 py-3 text-gray-600 hover:bg-gray-100 hover:text-[#2934b1] transition"
               >

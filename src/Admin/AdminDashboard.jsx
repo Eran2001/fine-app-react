@@ -72,7 +72,7 @@ export default function Dashboard() {
               </Link>
               <div className="space-x-4">
                 <Link
-                  to="#"
+                  to="setting"
                   className="text-gray-600 hover:text-[#2934b1] transition"
                 >
                   Settings
