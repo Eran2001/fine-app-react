@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import Navbar from "../../components/Navbar/Navbar";
+import BASE_URL from '../../config';
 
 const PostOfficeLogin = () => {
   const [email, setEmail] = useState("");
@@ -10,7 +11,7 @@ const PostOfficeLogin = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const response = await fetch('http://localhost:5000/api/post-office-login', {
+      const response = await fetch(`${BASE_URL}/api/post-office-login`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import BASE_URL from '../config';
 
 const Officer = () => {
   const [officers, setOfficers] = useState([]);
@@ -14,7 +15,7 @@ const Officer = () => {
   // Fetch officers
   const fetchOfficers = async () => {
     try {
-      const response = await fetch("http://localhost:5000/api/officers");
+      const response = await fetch(`${BASE_URL}/api/officers`);
       const data = await response.json();
       setOfficers(data);
     } catch (error) {
@@ -30,8 +31,8 @@ const Officer = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     const url = editId
-      ? `http://localhost:5000/api/officers/${editId}`
-      : "http://localhost:5000/api/officers";
+      ? `${BASE_URL}/api/officers/${editId}`
+      : `${BASE_URL}/api/officers`;
     const method = editId ? "PUT" : "POST";
     try {
       const response = await fetch(url, {
@@ -57,7 +58,7 @@ const Officer = () => {
   // Handle delete
   const handleDelete = async (id) => {
     try {
-      await fetch(`http://localhost:5000/api/officers/${id}`, {
+      await fetch(`${BASE_URL}/api/officers/${id}`, {
         method: "DELETE",
       });
       fetchOfficers();

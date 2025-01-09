@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import BASE_URL from '../config';
 
 const Fines = () => {
 
@@ -7,7 +8,7 @@ const Fines = () => {
   useEffect(() => {
     const fetchFines = async () => {
       try {
-        const response = await fetch("http://localhost:5000/api/fines");
+        const response = await fetch(`${BASE_URL}/api/fines`);
         const data = await response.json();
         setFines(data);
       } catch (error) {

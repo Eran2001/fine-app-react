@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
 import './PostPayFines.css';
+import BASE_URL from '../../config';
 
 const PostPayFine = () => {
   const [fines, setFines] = useState([]);
@@ -7,7 +8,7 @@ const PostPayFine = () => {
   useEffect(() => {
     const fetchFines = async () => {
       try {
-        const response = await fetch('http://localhost:5000/api/officerfines');
+        const response = await fetch(`${BASE_URL}/api/officerfines`);
         const data = await response.json();
         setFines(data);
       } catch (error) {
@@ -21,7 +22,7 @@ const PostPayFine = () => {
     // Handle the "Paid" button click
     const handlePaid = async (fineId) => {
       try {
-        const response = await fetch(`http://localhost:5000/api/officerfines/${fineId}`, {
+        const response = await fetch(`${BASE_URL}/api/officerfines/${fineId}`, {
           method: "DELETE",
         });
   

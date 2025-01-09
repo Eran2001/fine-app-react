@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import BASE_URL from '../config';
 
 const ReportedIssues = () => {
   const [issues, setIssues] = useState([]);
@@ -6,7 +7,7 @@ const ReportedIssues = () => {
   useEffect(() => {
     const fetchIssues = async () => {
       try {
-        const response = await fetch("http://localhost:5000/api/issues");
+        const response = await fetch(`${BASE_URL}/api/issues`);
         if (!response.ok) throw new Error("Failed to fetch issues");
         const data = await response.json();
         setIssues(data);

@@ -1,4 +1,5 @@
 import { useState } from "react";
+import BASE_URL from '../config';
 
 const OfficerIssueFine = () => {
   const [fine, setFine] = useState({
@@ -32,7 +33,7 @@ const OfficerIssueFine = () => {
     }
 
     try {
-      const response = await fetch("http://localhost:5000/api/fines", {
+      const response = await fetch(`${BASE_URL}/api/fines`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

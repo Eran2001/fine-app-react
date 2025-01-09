@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import Navbar from "../components/Navbar/Navbar";
+import BASE_URL from '../config';
 
 const OfficersLogin = () => {
   const [email, setEmail] = useState("");
@@ -11,7 +12,7 @@ const OfficersLogin = () => {
   const handleLogin = async (e) => {
     e.preventDefault();
     try {
-      const response = await fetch("http://localhost:5000/api/officers/login", {
+      const response = await fetch(`${BASE_URL}/api/officers/login`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ email, password }),

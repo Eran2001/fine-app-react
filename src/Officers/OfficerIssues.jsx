@@ -1,4 +1,5 @@
 import { useState } from "react";
+import BASE_URL from '../config';
 
 const OfficerIssues = () => {
 
@@ -8,7 +9,7 @@ const OfficerIssues = () => {
     const handleSubmit = async (e) => {
       e.preventDefault();
       try {
-        const response = await fetch("http://localhost:5000/api/issues", {
+        const response = await fetch(`${BASE_URL}/api/issues`, {
           method: "POST",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify({ issue_name: issueName, description }),

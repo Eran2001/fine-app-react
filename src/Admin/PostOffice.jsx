@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import BASE_URL from '../config';
 
 const PostOffice = () => {
 
@@ -9,7 +10,7 @@ const PostOffice = () => {
   // Fetch post offices
   const fetchPostOffices = async () => {
     try {
-      const response = await fetch("http://localhost:5000/api/postoffices");
+      const response = await fetch(`${BASE_URL}/api/postoffices`);
       const data = await response.json();
       setPostOffices(data);
     } catch (error) {
@@ -24,7 +25,7 @@ const PostOffice = () => {
   // Handle form submission
   const handleSubmit = async (e) => {
     e.preventDefault();
-    const url = editId ? `http://localhost:5000/api/postoffices/${editId}` : "http://localhost:5000/api/postoffices";
+    const url = editId ? `${BASE_URL}/api/postoffices/${editId}` : `${BASE_URL}/api/postoffices`;
     const method = editId ? "PUT" : "POST";
     try {
       const response = await fetch(url, {
@@ -43,7 +44,7 @@ const PostOffice = () => {
 
   const handlePatchUpdate = async (id, updatedField) => {
     try {
-      const response = await fetch(`http://localhost:5000/postoffices/${id}`, {
+      const response = await fetch(`${BASE_URL}/postoffices/${id}`, {
         method: "PATCH",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(updatedField), 
@@ -66,7 +67,7 @@ const PostOffice = () => {
   // Handle delete
   const handleDelete = async (id) => {
     try {
-      await fetch(`http://localhost:5000/api/postoffices/${id}`, { method: "DELETE" });
+      await fetch(`${BASE_URL}/api/postoffices/${id}`, { method: "DELETE" });
       fetchPostOffices();
     } catch (error) {
       console.error("Error deleting post office:", error);

@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import Navbar from '../components/Navbar/Navbar';
+import BASE_URL from '../config';
 
 const AdminLogin = () => {
   const [email, setEmail] = useState('');
@@ -12,7 +13,7 @@ const AdminLogin = () => {
     e.preventDefault();
 
     try {
-      const response = await fetch('http://localhost:5000/api/adminLogin', {
+      const response = await fetch(`${BASE_URL}/api/adminLogin`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

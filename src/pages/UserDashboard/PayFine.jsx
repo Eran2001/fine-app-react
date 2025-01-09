@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import BASE_URL from '../../config';
 
 const PayFine = () => {
   const [fines, setFines] = useState([]);
@@ -7,7 +8,7 @@ const PayFine = () => {
   useEffect(() => {
     const fetchFines = async () => {
       try {
-        const response = await fetch("http://localhost:5000/api/fines");
+        const response = await fetch(`${BASE_URL}/api/fines`);
         if (!response.ok) {
           throw new Error("Failed to fetch fines");
         }
@@ -24,7 +25,7 @@ const PayFine = () => {
   // Handle the "Paid" button click
   const handlePaid = async (fineId) => {
     try {
-      const response = await fetch(`http://localhost:5000/api/fines/${fineId}`, {
+      const response = await fetch(`${BASE_URL}/api/fines/${fineId}`, {
         method: "DELETE",
       });
 
